@@ -19,12 +19,16 @@ def emo_detector():
     sadness = response['sadness']
     dominant_emotion = response['dominant_emotion']
     
-    # Return a formatted string with the emotion scores and dominant emotion
-    return (
-        f"For the given statement, the system response is 'anger': {anger}, "
-        f"'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and 'sadness': {sadness}. "
-        f"The dominant emotion is <strong>{dominant_emotion}</strong>."
-    )
+    # Check if the dominant_emotion is None, indicating an error or invalid input
+    if dominant_emotion is None:
+        return "Invalid input! Try again."
+    else:
+        # Return a formatted string with the emotion scores and dominant emotion
+        return (
+            f"For the given statement, the system response is 'anger': {anger}, "
+            f"'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and 'sadness': {sadness}. "
+            f"The dominant emotion is <strong>{dominant_emotion}</strong>."
+        )
 
 @app.route("/")
 def render_index_page():
